@@ -308,8 +308,13 @@ void octree_read_batch_cpu(int n_paths, char** paths, int n_threads, octree* gri
 
   //determine necessary memory
   ot_size_t n;
-  ot_size_t n_leafs[n_paths];
-  ot_size_t n_blocks[n_paths];
+  #ifdef _MSC_VER
+    ot_size_t* n_leafs = new ot_size_t[n_paths];
+    ot_size_t* n_blocks = new ot_size_t[n_paths];
+  #else
+    ot_size_t n_leafs[n_paths];
+    ot_size_t n_blocks[n_paths];
+ #endif
 
   FILE* fp = fopen(paths[0], "rb");
   int magic_number = -1;
@@ -418,8 +423,12 @@ void dense_read_prealloc_batch_cpu(int n_paths, char** paths, int n_threads, int
   for(int dim_idx = 1; dim_idx < n_dim; ++dim_idx) {
     offset *= dims[dim_idx];
   }
-
-  int dims_single[n_dim];
+  #ifdef _MSC_VER
+    int* dims_single = new int[n_dim];
+  #else
+    int dims_single[n_dim];
+ #endif
+  
   dims_single[0] = 1;
   for(int dim_idx = 1; dim_idx < n_dim; ++dim_idx) {
     dims_single[dim_idx] = dims[dim_idx];

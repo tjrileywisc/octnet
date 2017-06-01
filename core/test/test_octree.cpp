@@ -27,6 +27,7 @@
 #include <sstream>
 #include <vector>
 #include <string.h>
+#include <time.h>
 
 #include "octnet/test/objects.h"
 

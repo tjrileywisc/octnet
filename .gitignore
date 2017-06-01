@@ -5,6 +5,7 @@ geometry/build
 py/build
 py/pyoctnet.cpp
 py/pyoctnet.so
+py/pyoctnet.pyd
 th/cpu/build
 th/gpu/build
 doc/generated_doc/
